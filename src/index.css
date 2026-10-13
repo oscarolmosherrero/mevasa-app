@@ -1,0 +1,19 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Geist (sans) para cuerpo y datos · Geist Mono para títulos, botones y números de línea */
+@layer base {
+  html { background: #000; color: #fff; font-family: 'Geist', ui-sans-serif, system-ui, sans-serif; }
+  body { margin: 0; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, h4, button { font-family: 'Geist Mono', ui-monospace, Menlo, Consolas, monospace; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid #12E5FF; outline-offset: 3px; }
+}
+
+.leaflet-container { background: #000; font-family: inherit; }
+.bus-icon { background: none; border: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}

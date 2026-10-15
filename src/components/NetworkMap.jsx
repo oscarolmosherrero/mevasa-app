@@ -55,8 +55,7 @@ const LABELS = [
   { x: 900,  y: 1240, lines: ['15'], name: 'Parque Tecnológico', sub: 'de Boecillo' },
   { x: 510,  y: 1158, lines: ['14'], name: 'Viana', sub: 'de Cega', align: 'end' },
   { x: 270,  y: 860,  lines: ['A1','A2','A3','A4','AU'], name: 'Arroyo', sub: 'de la Encomienda', align: 'end' },
-  // Valladolid situado exactamente en la posición marcada en la flecha de la captura
-  { x: 730,  y: 260,  lines: ['11','10','8','14','15','5','2','13','12','7','6','A1','A2','A3','A4','AU'], name: 'Valladolid', keep: true, align: 'start' }
+  { x: 560,  y: 460,  lines: ['11','10','8','14','15','5','2','13','12','7','6','A1','A2','A3','A4','AU'], name: 'Valladolid', keep: true, align: 'start' }
 ]
 
 const CAPSULES = [
@@ -133,7 +132,7 @@ function Label({ b, hover, setHover }) {
   const end = b.align === 'end'
   const total = n * SQ + Math.max(n - 1, 0) * GAP
   const startX = end ? b.x - total : b.x
-  const nameY = b.y + (n ? 70 : 22)
+  const nameY = b.y + (n && !b.keep ? 70 : 22)
   
   const isHighlighted = hover && b.lines.includes(hover)
   const dimmed = hover && !b.keep && !isHighlighted
@@ -155,12 +154,12 @@ function Label({ b, hover, setHover }) {
       {b.icon === 'plane' && (
         <path
           transform={`translate(${startX - 44} ${b.y + 3}) scale(1.4)`}
-          fill="#fff"
+          fill="#000"
           d="M21 16v-2l-8-5V3.5c0-.83-.67-1.5-1.5-1.5S10 2.67 10 3.5V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"
         />
       )}
 
-      <g fill={b.fill || "#fff"} fontFamily={SANS} textAnchor={end ? 'end' : 'start'} pointerEvents="auto">
+      <g fill={b.fill || "#000"} fontFamily={SANS} textAnchor={end ? 'end' : 'start'} pointerEvents="auto">
         <text x={b.x} y={nameY} fontSize="28">{b.name}</text>
         {b.sub && <text x={b.x} y={nameY + 20} fontSize="14" fillOpacity="0.65">{b.sub}</text>}
       </g>
@@ -176,14 +175,19 @@ function Blob({ b, hover }) {
   const style = { opacity, transition: 'opacity .2s' }
 
   return b.shape === 'poly' ? (
-    <polygon points={b.pts.map((p) => p.join(',')).join(' ')} fill="#fff" stroke="#fff" strokeWidth="26" strokeLinejoin="miter" style={style} />
+    <polygon points={b.pts.map((p) => p.join(',')).join(' ')} fill="#e5e5e5" stroke="none" strokeWidth="26" strokeLinejoin="miter" style={style} />
   ) : (
-    <rect x={b.x} y={b.y} width={b.w} height={b.h} rx={b.r} fill="#fff" stroke="#fff" strokeWidth="20" strokeLinejoin="miter" style={style} />
+    <rect x={b.x} y={b.y} width={b.w} height={b.h} rx={b.r} fill="#e5e5e5" stroke="none" strokeWidth="20" strokeLinejoin="miter" style={style} />
   )
 }
 
-export default function NetworkMap() {
-  const [hover, setHover] = useState(null)
+// Recibe hover y setHover como props desde Home. Si no se le pasan, usa su propio estado local.
+export default function NetworkMap({ hover: externalHover, setHover: externalSetHover }) {
+  const [localHover, setLocalHover] = useState(null)
+  
+  const hover = externalHover !== undefined ? externalHover : localHover
+  const setHover = externalSetHover !== undefined ? externalSetHover : setLocalHover
+
   const navigate = useNavigate()
   const go = (id) => navigate(`/lineas/${id}`)
 
@@ -202,14 +206,14 @@ export default function NetworkMap() {
       <svg viewBox={VIEWBOX} className="mx-auto w-full max-h-[85vh] object-contain" role="group" aria-label="Mapa esquemático de la red metropolitana">
         {BLOBS.map((b, i) => <Blob key={i} b={b} hover={hover} />)}
 
-        {layer('branch')}
-        {layer('stripe')}
-
         {CAPSULES.map((c, i) => (
           <g key={i} transform={`translate(${c.x} ${c.y}) rotate(45)`} pointerEvents="none">
-            <rect x={-c.len / 2} y="-15" width={c.len} height="30" rx="0" fill="none" stroke="#000" strokeWidth="10" strokeLinejoin="miter" />
+            <rect x={-c.len / 2} y="-20" width={c.len} height="40" rx="0" fill="rgba(0, 0, 0, 0.08)" stroke="none" />
           </g>
         ))}
+
+        {layer('branch')}
+        {layer('stripe')}
 
         <g fill="none" stroke="transparent" strokeLinecap="round" strokeLinejoin="round" pointerEvents="stroke" style={{ cursor: 'pointer' }}>
           {PATH_D.map((p, i) => (

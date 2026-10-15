@@ -1,4 +1,9 @@
-const V = { n: 'Valladolid (Estación de Autobuses)', p: [41.644, -4.7335] }
+const EST = { n: 'Valladolid (Estación de Autobuses)', p: [41.6403, -4.7348] }
+const ARCO = { n: 'Paseo Arco Ladrillo', p: [41.6408, -4.7328] }
+const HM = { n: 'Paseo Hospital Militar', p: [41.6436, -4.7343] }
+const PZ = { n: 'Paseo Zorrilla', p: [41.6360, -4.7390] }
+const AVSAL = { n: 'Avenida de Salamanca', p: [41.6240, -4.7540] }
+const RIO = { n: 'C.C. Río Shopping', p: [41.6118, -4.8045] }
 
 const SCH_HIGH = {
   invierno: [
@@ -72,14 +77,14 @@ export const LINES = [
     operator: 'La Regional Vallisoletana', 
     schedule: SCH_HIGH,
     route: [
-      V, 
-      { n: 'Calle del Puente Colgante, 2', p: [41.6400, -4.7350] },
-      { n: 'Paseo Zorrilla, frente Corte Inglés', p: [41.6360, -4.7390] },
-      { n: 'Avenida Medina del Campo (Arturo Eyries)', p: [41.6280, -4.7450] },
-      { n: 'Paseo de Zorrilla / Puente Duero', p: [41.6150, -4.7650] },
-      { n: 'Camino Zaratán (La Flecha)', p: [41.6180, -4.7950] },
-      { n: 'Plaza España (Ayuntamiento de La Flecha)', p: [41.6130, -4.8020] },
-      { n: 'C.C. Río Shopping', p: [41.6118, -4.8045] }
+      EST, 
+      ARCO,
+      HM,
+      PZ,
+      AVSAL,
+      { n: 'La Vega (Avenida Colón)', p: [41.6180, -4.7850] },
+      { n: 'La Flecha (Plaza España)', p: [41.6140, -4.8000] },
+      RIO
     ] 
   },
   { 
@@ -90,11 +95,12 @@ export const LINES = [
     operator: 'La Regional Vallisoletana', 
     schedule: SCH_HIGH, 
     route: [
-      V, 
-      { n: 'Paseo Zorrilla', p: [41.6360, -4.7390] },
-      { n: 'Avenida de Salamanca', p: [41.6250, -4.7500] },
-      { n: 'Monasterio de Prado', p: [41.6200, -4.7700] },
-      { n: 'Arroyo de la Encomienda', p: [41.6118, -4.8045] }
+      EST, 
+      ARCO,
+      HM,
+      PZ,
+      AVSAL,
+      { n: 'Arroyo (Avenida Jose Luis Lasa)', p: [41.6120, -4.7900] }
     ] 
   },
   { 
@@ -105,11 +111,13 @@ export const LINES = [
     operator: 'La Regional Vallisoletana', 
     schedule: SCH_HIGH, 
     route: [
-      V, 
-      { n: 'Paseo Zorrilla', p: [41.6360, -4.7390] },
+      EST, 
+      ARCO,
+      HM,
+      PZ,
       { n: 'Parquesol', p: [41.6400, -4.7650] },
-      { n: 'Glorieta Zaratán / Av. Gijón', p: [41.6550, -4.7450] },
-      { n: 'Arroyo de la Encomienda', p: [41.6118, -4.8045] }
+      { n: 'Glorieta Zaratán / Av. Gijón', p: [41.6480, -4.7700] },
+      RIO
     ] 
   },
   { 
@@ -120,12 +128,14 @@ export const LINES = [
     operator: 'La Regional Vallisoletana', 
     schedule: SCH_HIGH,
     route: [
-      V, 
-      { n: 'Paseo Zorrilla', p: [41.6360, -4.7390] },
-      { n: 'Avenida Salamanca', p: [41.6250, -4.7500] },
+      EST, 
+      ARCO,
+      HM,
+      PZ,
+      AVSAL,
       { n: 'La Vega', p: [41.6180, -4.7850] },
-      { n: 'Sotoverde', p: [41.6040, -4.8150] },
-      { n: 'C.C. Río Shopping', p: [41.6118, -4.8045] }
+      { n: 'Sotoverde', p: [41.6060, -4.8150] },
+      RIO
     ] 
   },
   { 
@@ -136,11 +146,13 @@ export const LINES = [
     operator: 'La Regional Vallisoletana', 
     schedule: SCH_UNI,
     route: [
-      { n: 'Plaza España (Ayuntamiento Arroyo)', p: [41.6130, -4.8020] },
+      { n: 'La Flecha (Plaza España)', p: [41.6140, -4.8000] },
       { n: 'Avenida Aranzana', p: [41.6110, -4.8040] },
-      { n: 'Paseo de Zorrilla', p: [41.6350, -4.7390] },
-      { n: 'Plaza Santa Cruz (Valladolid)', p: [41.6510, -4.7230] },
-      { n: 'Facultad de Filosofía y Letras', p: [41.6550, -4.7150] },
+      AVSAL,
+      PZ,
+      HM,
+      ARCO,
+      EST,
       { n: 'UEMC', p: [41.6350, -4.7100] }
     ] 
   },
@@ -152,7 +164,9 @@ export const LINES = [
     operator: 'Empresa Cabrero (ECSA)', 
     schedule: SCH_HIGH,
     route: [
-      V, 
+      EST, 
+      ARCO,
+      HM,
       { n: 'Paseo Arco Ladrillo', p: [41.6300, -4.7340] },
       { n: 'Carretera de Madrid (N-601)', p: [41.6120, -4.7360] },
       { n: 'Polígono San Cristóbal (N-601)', p: [41.5980, -4.7300] },
@@ -167,8 +181,10 @@ export const LINES = [
     operator: 'Empresa Cabrero', 
     schedule: SCH_LOW, 
     route: [
-      V, 
-      { n: 'Paseo Zorrilla', p: [41.6360, -4.7390] },
+      EST, 
+      ARCO,
+      HM,
+      PZ,
       { n: 'Carretera de Madrid (N-601)', p: [41.6050, -4.7380] },
       { n: 'Paseo de Covaresa (N-601)', p: [41.5900, -4.7400] },
       { n: 'Boecillo', p: [41.5736, -4.7600] }
@@ -182,9 +198,11 @@ export const LINES = [
     operator: 'Linecar', 
     schedule: SCH_MED,
     route: [
-      V, 
+      EST, 
+      ARCO,
+      HM,
       { n: 'Paseo de Arco Ladrillo', p: [41.6300, -4.7340] },
-      { n: 'Carretera de Soria (Avenida de Burgos / La Cistérniga)', p: [41.6160, -4.6560] }, 
+      { n: 'Carretera de Soria (La Cistérniga)', p: [41.6160, -4.6560] }, 
       { n: 'Polígono La Mora', p: [41.6050, -4.6300] }, 
       { n: 'Tudela de Duero', p: [41.5890, -4.5730] }, 
       { n: 'Montemayor', p: [41.5000, -4.4500] }, 
@@ -199,7 +217,8 @@ export const LINES = [
     operator: 'Autodival', 
     schedule: SCH_LOW, 
     route: [
-      V, 
+      EST, 
+      ARCO,
       { n: 'Plaza Circular', p: [41.6500, -4.7150] },
       { n: 'Barrio Pilarica', p: [41.6530, -4.6950] },
       { n: 'Carretera de Renedo (VA-140)', p: [41.6550, -4.6650] },
@@ -214,7 +233,8 @@ export const LINES = [
     operator: 'La Regional Vallisoletana', 
     schedule: SCH_MED,
     route: [
-      V, 
+      EST, 
+      ARCO,
       { n: 'Plaza Poniente', p: [41.6530, -4.7300] },
       { n: 'Avenida de Gijón', p: [41.6600, -4.7350] },
       { n: 'Autovía de Castilla (A-62 / Fuente Berrocal)', p: [41.6750, -4.7450] },
@@ -230,10 +250,12 @@ export const LINES = [
     operator: 'Autocares Interbús', 
     schedule: SCH_HIGH, 
     route: [
-      { n: 'Pte Colgante, 2 - Est. bus', p: [41.6400, -4.7350] },
+      EST,
+      ARCO,
       { n: 'Pº Isabel La Católica', p: [41.6530, -4.7300] },
-      { n: 'Av. Gijón', p: [41.6600, -4.7350] },
-      { n: 'Equinoccio Park (A-62)', p: [41.6750, -4.7500] },
+      { n: 'Avenida de Gijón', p: [41.6600, -4.7350] },
+      { n: 'Glorieta Zaratán (A-62)', p: [41.6680, -4.7430] },
+      { n: 'Equinoccio Park', p: [41.6750, -4.7500] },
       { n: 'Zaratán', p: [41.6850, -4.7800] }
     ] 
   },
@@ -245,7 +267,8 @@ export const LINES = [
     operator: 'Linecar', 
     schedule: SCH_LOW,
     route: [
-      V, 
+      EST, 
+      ARCO,
       { n: 'Avenida de Gijón', p: [41.6600, -4.7350] },
       { n: 'Carretera de León (N-601)', p: [41.6700, -4.7600] },
       { n: 'Villanubla', p: [41.6937, -4.8197] }, 
@@ -260,7 +283,8 @@ export const LINES = [
     operator: 'Autodival', 
     schedule: SCH_LOW, 
     route: [
-      V, 
+      EST, 
+      ARCO,
       { n: 'Plaza Circular', p: [41.6500, -4.7150] },
       { n: 'Carretera de Renedo (VA-140)', p: [41.6560, -4.6500] },
       { n: 'Castronuevo de Esgueva', p: [41.6700, -4.5200] }
@@ -274,7 +298,8 @@ export const LINES = [
     operator: 'La Regional Vallisoletana', 
     schedule: SCH_MED,
     route: [
-      { n: 'Calle del Puente Colgante, 2', p: [41.6400, -4.7350] },
+      EST,
+      ARCO,
       { n: 'Plaza Poniente', p: [41.6530, -4.7300] },
       { n: 'Avenida de Santander', p: [41.6650, -4.7150] },
       { n: 'Santovenia de Pisuerga', p: [41.6850, -4.7000] },
@@ -289,8 +314,10 @@ export const LINES = [
     operator: 'Empresa Cabrero', 
     schedule: SCH_LOW, 
     route: [
-      V, 
-      { n: 'Paseo Zorrilla', p: [41.6360, -4.7390] },
+      EST, 
+      ARCO,
+      HM,
+      PZ,
       { n: 'Paseo Arco Ladrillo', p: [41.6300, -4.7340] },
       { n: 'Carretera de Madrid (N-601)', p: [41.6100, -4.7360] },
       { n: 'Viana de Cega', p: [41.5876, -4.7505] }
@@ -304,9 +331,12 @@ export const LINES = [
     operator: 'Empresa Cabrero', 
     schedule: SCH_TEC, 
     route: [
-      V, 
-      { n: 'Paseo Zorrilla', p: [41.6360, -4.7390] },
+      EST, 
+      ARCO,
+      HM,
+      PZ,
       { n: 'Carretera de Madrid (N-601)', p: [41.6000, -4.7380] },
+      { n: 'Desvío Parque Tecnológico', p: [41.5750, -4.7550] },
       { n: 'Parque Tecnológico de Boecillo', p: [41.5690, -4.7650] }
     ] 
   }
